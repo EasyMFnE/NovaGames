@@ -1,0 +1,27 @@
+name: NovaGames
+version: '0.1.0'
+description: Extensible minigames framework
+
+author: EasyMFnE
+
+database: false
+main: net.easymfne.novagames.NovaGames
+load: POSTWORLD
+
+commands:
+  novagames:
+    aliases: [ng]
+    description: NovaGames administrative command
+    permission: novagames.command.novagames
+    permission-message: 'Unknown command. Type "/help" for help.'
+
+permissions:
+  novagames.*:
+    default: false
+    description: Grant all permissions
+    children:
+      novagames.all: true
+      
+  novagames.all:
+    default: op
+    description: Grant all permissions
