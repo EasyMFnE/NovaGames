@@ -5,7 +5,7 @@
  * General Public License as published by the Free Software Foundation, either version 3 of the
  * License, or any later version.
  * 
- * Knapsacks is distributed in the hope that it will be useful, but without any warranty; without
+ * NovaGames is distributed in the hope that it will be useful, but without any warranty; without
  * even the implied warranty of merchantability or fitness for a particular purpose. See the GNU
  * General Public License for details.
  * 
@@ -21,17 +21,29 @@ public abstract class MinigameComponent implements Listener {
 
   private Minigame minigame;
 
-  public void close() {
-    HandlerList.unregisterAll(this);
-  }
-
+  /**
+   * @return The Minigame instance associated with this MinigameComponent instance.
+   */
   public Minigame getMinigame() {
     return minigame;
   }
 
+  /**
+   * Initialize the Minigame, registering its EventHandlers and performing any other necessary
+   * actions.
+   * 
+   * @param minigame The Minigame instance the component should be associated with.
+   */
   public void init(Minigame minigame) {
     this.minigame = minigame;
     minigame.getPlugin().getServer().getPluginManager().registerEvents(this, minigame.getPlugin());
+  }
+
+  /**
+   * Unregister all events and destroy the component so all of its objects can be garbage collected.
+   */
+  public void destroy() {
+    HandlerList.unregisterAll(this);
   }
 
 }

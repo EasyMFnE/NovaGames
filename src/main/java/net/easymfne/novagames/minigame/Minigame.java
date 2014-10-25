@@ -5,7 +5,7 @@
  * General Public License as published by the Free Software Foundation, either version 3 of the
  * License, or any later version.
  * 
- * Knapsacks is distributed in the hope that it will be useful, but without any warranty; without
+ * NovaGames is distributed in the hope that it will be useful, but without any warranty; without
  * even the implied warranty of merchantability or fitness for a particular purpose. See the GNU
  * General Public License for details.
  * 
@@ -38,17 +38,31 @@ public class Minigame {
     state = MinigameState.CREATED;
   }
 
+  /**
+   * @param player Player to add to the participant registry.
+   * @return Whether the player was added.
+   */
   public final boolean addParticipant(Player player) {
     return participants.add(player);
   }
 
+  /**
+   * @param player Player to add to the participant registry.
+   * @return Whether the player was added.
+   */
   public final boolean addSpectator(Player player) {
     return spectators.add(player);
   }
 
+  /**
+   * Destroy the event and allow it to be garbage collected.
+   */
   public void destroy() {
     participants.clear();
     spectators.clear();
+    for (MinigameComponent component : components.values()) {
+      component.destroy();
+    }
   }
 
   public final MinigameComponent getComponent(Class<? extends MinigameComponent> componentClass) {
@@ -82,6 +96,10 @@ public class Minigame {
 
   public final boolean removeSpectator(Player player) {
     return spectators.remove(player);
+  }
+
+  public final void setState(MinigameState state) {
+    this.state = state;
   }
 
 }

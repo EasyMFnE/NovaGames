@@ -5,7 +5,7 @@
  * General Public License as published by the Free Software Foundation, either version 3 of the
  * License, or any later version.
  * 
- * Knapsacks is distributed in the hope that it will be useful, but without any warranty; without
+ * NovaGames is distributed in the hope that it will be useful, but without any warranty; without
  * even the implied warranty of merchantability or fitness for a particular purpose. See the GNU
  * General Public License for details.
  * 
@@ -35,9 +35,9 @@ public class Basics extends MinigameComponent {
     }
     return event.getDamager();
   }
-
-  private boolean pvpEnabled = false;
+  
   private boolean pveEnabled = false;
+  private boolean pvpEnabled = false;
 
   public final boolean isPveEnabled() {
     return pveEnabled;
