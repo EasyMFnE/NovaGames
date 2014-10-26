@@ -14,12 +14,24 @@
  */
 package net.easymfne.novagames.minigame;
 
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 
+/**
+ * A component of a Minigame, responsible for its own logic and listening for events such as changes
+ * in the Minigame's state.
+ */
 public abstract class MinigameComponent implements Listener {
 
   private Minigame minigame;
+
+  /**
+   * Unregister all events and destroy the component so all of its objects can be garbage collected.
+   */
+  public void destroy() {
+    HandlerList.unregisterAll(this);
+  }
 
   /**
    * @return The Minigame instance associated with this MinigameComponent instance.
@@ -33,17 +45,11 @@ public abstract class MinigameComponent implements Listener {
    * actions.
    * 
    * @param minigame The Minigame instance the component should be associated with.
+   * @param componentConfig The ConfigurationSection representing the component's configuration.
    */
-  public void init(Minigame minigame) {
+  public void init(Minigame minigame, ConfigurationSection componentConfig) {
     this.minigame = minigame;
     minigame.getPlugin().getServer().getPluginManager().registerEvents(this, minigame.getPlugin());
-  }
-
-  /**
-   * Unregister all events and destroy the component so all of its objects can be garbage collected.
-   */
-  public void destroy() {
-    HandlerList.unregisterAll(this);
   }
 
 }

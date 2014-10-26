@@ -14,12 +14,46 @@
  */
 package net.easymfne.novagames.minigame;
 
+/**
+ * Enumeration of the various potential states of a Minigame.
+ */
 public enum MinigameState {
-  CREATED, // Created and components initialized, but not yet opened to players.
-  OPEN, // Open to players for joining.
-  STARTING, // Minigame is transitioning from OPEN to ACTIVE.
-  ACTIVE, // Minigame is currently running.
-  ENDING, // Minigame is transitioning from ACTIVE to FINISHED.
-  FINISHED, // Minigame has ended.
-  CLOSED; // Minigame and all components have been closed.
+
+  /**
+   * The Minigame has been created and components initialized.
+   * */
+  CREATED,
+
+  /**
+   * The Minigame is open for players to join.
+   */
+  OPEN,
+
+  /**
+   * The Minigame is transitioning from OPEN to ACTIVE. Not strictly necessary, but can be useful
+   * for situations where this transition is not instantaneous.
+   */
+  STARTING,
+
+  /**
+   * The Minigame is active and currently running.
+   */
+  ACTIVE,
+
+  /**
+   * The Minigame is transitioning from ACTIVE to FINISHED. Not strictly necessary, but can be
+   * useful for situations where this transition is not instantaneous.
+   */
+  ENDING,
+
+  /**
+   * The Minigame is finished, and should not experience any further activity.
+   */
+  FINISHED,
+
+  /**
+   * The Minigame has been completely closed and all of its components have been destroyed.
+   */
+  DESTROYED;
+
 }
